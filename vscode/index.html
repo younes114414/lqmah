@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لقمة | تعلّم الأكل الشعبي</title>
+<style>
+:root{--bg:#2A1710;--bg2:#3A2217;--card:#46291B;--or:#E8691A;--cr:#F6ECDC;--mu:#C9B49C;--gold:#F2B66B;--ok:#7FD39A}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(circle at 80% -10%,#4d2c1c,var(--bg) 55%);color:var(--cr);font-family:Tahoma,"Segoe UI",Arial,sans-serif;min-height:100vh;line-height:1.7}
+header{display:flex;align-items:center;gap:16px;padding:18px 5vw;border-bottom:1px solid #5a3827;flex-wrap:wrap}
+header img{width:60px;height:60px;border-radius:14px}
+header h1{font-size:32px;color:var(--or)}header p{color:var(--mu);font-size:14px}
+.badge{border:1px solid var(--gold);color:var(--gold);padding:4px 14px;border-radius:99px;font-size:14px}
+.bar{margin-inline-start:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ppl{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid #6b4430;border-radius:99px;padding:4px 10px}
+.ppl button{width:32px;height:32px;border-radius:50%;border:0;background:var(--or);color:#fff;font-size:20px;cursor:pointer}
+.ppl b{min-width:26px;text-align:center;font-size:18px}
+main{padding:28px 5vw 60px;max-width:1200px;margin:auto}
+h2{font-size:28px;margin-bottom:6px}.sub{color:var(--mu);margin-bottom:20px}
+.tabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.tab{background:var(--bg2);color:var(--cr);border:1px solid #6b4430;padding:10px 24px;border-radius:99px;font:inherit;cursor:pointer;font-size:17px}
+.tab.on{background:var(--or);border-color:var(--or);color:#fff;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.dish{background:var(--card);border:1px solid #5f3a27;border-radius:18px;padding:22px;cursor:pointer;text-align:right;color:inherit;font:inherit;transition:transform .15s,border-color .15s}
+.dish:hover,.dish:focus-visible{transform:translateY(-4px);border-color:var(--or);outline:none}
+.dish .e{font-size:44px}.dish b{display:block;font-size:22px;margin:6px 0}.dish span{color:var(--mu);font-size:14px;display:block}
+.dish em{font-style:normal;font-size:13px;color:var(--ok)}.dish em.no{color:var(--gold)}
+.back{background:none;border:1px solid #6b4430;color:var(--cr);padding:8px 18px;border-radius:99px;cursor:pointer;font:inherit;margin-bottom:18px}
+.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.hero .e{font-size:60px}.hero h2{font-size:38px;color:var(--or)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}.chips i{font-style:normal;background:var(--bg2);border:1px solid #5f3a27;padding:3px 14px;border-radius:99px;font-size:14px;color:var(--gold)}
+.box{background:var(--card);border-radius:18px;padding:22px;border:1px solid #5f3a27}
+.box h3{color:var(--gold);margin-bottom:10px}.box li{margin-inline-start:20px;margin-bottom:6px;font-size:18px}
+.chk{display:flex;gap:12px;align-items:center;padding:8px 0;font-size:18px;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:#E8691A}
+.miss{margin-top:14px;padding:14px;border-radius:12px;background:var(--bg2);border:1px dashed var(--gold)}
+.miss.ok{border-color:var(--ok);color:var(--ok)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+button.p{background:var(--or);color:#fff;border:0;padding:11px 22px;border-radius:12px;font:inherit;font-weight:700;cursor:pointer}
+button.s{background:var(--bg2);color:var(--cr);border:1px solid #6b4430;padding:11px 18px;border-radius:12px;font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold)}
+.step{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:start;padding:16px;border-radius:14px;border:1px solid transparent;margin-bottom:8px}
+.step.on{background:#5a3321;border-color:var(--or)}
+.step .n{width:44px;height:44px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-weight:700;color:var(--gold)}
+.step.on .n{background:var(--or);color:#fff}
+.step .t{font-size:18px}.step small{display:block;color:var(--mu)}
+.side{text-align:center;min-width:100px}
+.time{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--gold)}
+.side button{margin-top:4px;padding:5px 12px;font-size:13px}
+.note{color:var(--mu);font-size:13px;margin-top:20px}
+</style></head><body>
+<header><img id="logo" alt="شعار لقمة"><div><h1>لقمة</h1><p>تعلّمي وتعلّم الأكل الشعبي، خطوة بخطوة</p></div><span class="badge">Premium</span>
+<div class="bar"><span>عدد الأشخاص:</span><div class="ppl"><button onclick="setP(1)" aria-label="زيادة">+</button><b id="pv">4</b><button onclick="setP(-1)" aria-label="نقصان">−</button></div></div></header>
+<main id="app"></main>
+<script>
+document.getElementById("logo").src="data:image/jpeg;base64,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";
+// المقادير لـ 4 أشخاص: [الاسم, الكمية, الوحدة]
+const D=[
+{c:'om',id:'harees',e:'🍲',n:'الهريس',lv:'متوسط',tot:'من الليل + 4 ساعات',d:'أكلة العيد والمناسبات. قمح ولحم يستوون على نار هادية لين يصيرون كتلة وحدة ناعمة.',
+ing:[['قمح مقشور',2,'كوب'],['لحم أو دجاج بعظمه',.5,'كيلو'],['ماي',8,'كوب'],['سمن',.5,'كوب'],['ملح',0,'']],
+st:[['نقّعوا القمح في ماي كثير من الليل، وخلّوه لين الصبح.','من الليل',0],['صفّوا القمح وحطّوه في قدر كبير مع اللحم والماي.','10 دقائق',10],['خلّوه يغلي، وبعدين خفّفوا النار وغطّوا القدر. حرّكوه كل نص ساعة.','3 ساعات',180],['طلّعوا العظم وردّوا اللحم المفتّت للقدر.','15 دقيقة',15],['هرّسوه بالمضرب لين يصير ناعم ومتماسك.','30 دقيقة',30],['زيدوا الملح ونص السمن، وقدّموه وصبّوا باقي السمن فوقه.','5 دقائق',5]]},
+{c:'om',id:'mushakik',e:'🍢',n:'المشاكيك',lv:'سهل',tot:'ساعة و40 دقيقة',d:'لحم متبّل بالبهارات العمانية ومشوي على أعواد. مناسب للمبتدئين.',
+ing:[['لحم',.5,'كيلو'],['بهارات شواء عمانية',2,'ملعقة كبيرة'],['خل',1,'ملعقة كبيرة'],['ثوم',3,'فصوص'],['زيت',2,'ملعقة'],['ملح',0,''],['أعواد خشب',0,'']],
+st:[['قطّعوا اللحم مكعبات صغيرة بنفس الحجم.','10 دقائق',10],['اخلطوا البهارات والخل والثوم المفروم والزيت والملح، وغطّوا اللحم فيها.','5 دقائق',5],['حطّوه في الثلاجة يتشرّب النكهة.','ساعة',60],['ثبّتوا اللحم في الأعواد.','10 دقائق',10],['اشووا الأعواد 4 دقائق من كل جهة لين تستوي.','12 دقيقة',12],['قدّموها مع الخبز والسلطة.','5 دقائق',5]]},
+{c:'om',id:'arsiya',e:'🍚',n:'العرسية',lv:'متوسط',tot:'ساعتان',d:'أرز ولحم يستوون مع بعض لين يتماسكون، وتتقدّم بالسمن والبصل المحمّر.',
+ing:[['أرز',2,'كوب'],['دجاج أو لحم',.5,'كيلو'],['بصل',2,'حبة'],['هيل وقرفة',0,''],['ليمون عماني مجفف',2,'حبة'],['سمن',3,'ملاعق'],['ماي',6,'كوب'],['ملح',0,'']],
+st:[['اسلقوا اللحم مع الهيل والقرفة والليمون المجفف لين يستوي.','45 دقيقة',45],['اغسلوا الأرز وزيدوه على اللحم مع الملح.','5 دقائق',5],['خلّوه على نار هادية لين يتهرّى الأرز ويشرب المرق، وحرّكوه شوي شوي.','40 دقيقة',40],['هرّسوه بالمضرب لين يتماسك، وفتّتوا اللحم.','10 دقائق',10],['حمّروا البصل في السمن لين يصير ذهبي.','15 دقيقة',15],['قدّموا العرسية وحطّوا فوقها البصل والسمن.','5 دقائق',5]]},
+{c:'om',id:'madhbi',e:'🍗',n:'المضبي',lv:'متوسط',tot:'ساعتان و20 دقيقة',d:'دجاج متبّل بالتوابل ومشوي في الفرن. نسخة مبسطة من المضبي التقليدي.',
+ing:[['دجاجة كاملة',1,'حبة'],['كركم',1,'ملعقة كبيرة'],['كمون وكزبرة',1,'ملعقة كبيرة'],['ثوم',4,'فصوص'],['ليمون',1,'حبة'],['زيت',3,'ملاعق'],['ملح',0,''],['أرز',2,'كوب']],
+st:[['اخلطوا التوابل والثوم وعصير الليمون والزيت، وهذي هي التتبيلة.','10 دقائق',10],['دهنوا الدجاجة بالتتبيلة من برّا ومن جوّا.','10 دقائق',10],['خلّوها ساعة تتشرّب النكهة.','ساعة',60],['دخّلوها الفرن على 200 درجة لين تحمرّ وتستوي.','55 دقيقة',55],['خلّوها ترتاح شوي، وقدّموها فوق الأرز.','10 دقائق',10]]},
+{c:'om',id:'khabeesa',e:'🍯',n:'الخبيصة',lv:'سهل',tot:'35 دقيقة',d:'حلوى عمانية دافية من الطحين والسمن والسكر، بنكهة الهيل والزعفران.',
+ing:[['طحين',1,'كوب'],['سمن',.5,'كوب'],['سكر',.5,'كوب'],['ماي',1,'كوب'],['هيل مطحون',.5,'ملعقة صغيرة'],['زعفران',0,'']],
+st:[['حمّصوا الطحين على نار هادية وحرّكوه لين يصير لونه ذهبي.','8 دقائق',8],['غلّوا الماي مع السكر والهيل والزعفران لين يذوب السكر.','5 دقائق',5],['زيدوا الشراب على الطحين شوي شوي وحرّكوا بدون ما تتوقفون.','10 دقائق',10],['زيدوا السمن وكمّلوا تحريك لين يتماسك ويلمع.','10 دقائق',10],['قدّموها دافية مع القهوة العمانية.','دقيقتان',2]]},
+{c:'om',id:'marqooq',e:'🥘',n:'المرقوق',lv:'متوسط',tot:'ساعة و15 دقيقة',d:'مرق لحم وخضار يتغطّى برقاق رقيق يشرب المرق. أكلة بيتية معروفة.',
+ing:[['لحم مقطّع',.5,'كيلو'],['بصل',1,'حبة'],['طماطم',2,'حبة'],['قرع أو كوسا',.5,'كيلو'],['بهارات عمانية',1,'ملعقة كبيرة'],['رقاق جاهز',8,'قطع'],['ماي',4,'كوب'],['ملح',0,'']],
+st:[['حمّروا البصل في قدر لين يذبل، وزيدوا اللحم والبهارات.','10 دقائق',10],['زيدوا الطماطم والماي، وخلّوه يستوي على نار هادية.','35 دقيقة',35],['زيدوا الخضار المقطّعة وكمّلوا طبخ لين تلين.','15 دقيقة',15],['كسّروا الرقاق قطع صغيرة وحطّوه في المرق وغطّوا القدر.','10 دقائق',10],['قلّبوا بلطف وقدّموه سخن.','5 دقائق',5]]},
+{c:'sa',id:'kabsa',e:'🍛',n:'الكبسة',lv:'متوسط',tot:'ساعة و20 دقيقة',d:'الأكلة السعودية الأشهر: أرز بالدجاج والبهارات والطماطم.',
+ing:[['دجاج مقطّع',1,'كيلو'],['أرز بسمتي',3,'كوب'],['بصل',2,'حبة'],['طماطم',2,'حبة'],['معجون طماطم',2,'ملعقة كبيرة'],['بهارات كبسة',2,'ملعقة كبيرة'],['جزر',2,'حبة'],['زيت',.25,'كوب'],['ماء',4.5,'كوب'],['ملح',0,'']],
+st:[['انقعوا الأرز في ماء 20 دقيقة.','20 دقيقة',20],['حمّروا البصل في الزيت، وأضيفوا الدجاج حتى يتحمّر.','15 دقيقة',15],['أضيفوا الطماطم ومعجون الطماطم والبهارات والجزر المبشور وقلّبوا.','10 دقائق',10],['أضيفوا الماء وغطّوا القدر واتركوه على نار هادئة حتى ينضج الدجاج.','25 دقيقة',25],['صفّوا الأرز وأضيفوه للمرق، وغطّوا القدر على نار هادئة.','20 دقيقة',20],['اتركوا الكبسة ترتاح 5 دقائق ثم قدّموها.','5 دقائق',5]]},
+{c:'sa',id:'jareesh',e:'🥣',n:'الجريش',lv:'متوسط',tot:'ساعتان',d:'قمح مجروش مطبوخ مع اللبن واللحم، أكلة نجدية معروفة.',
+ing:[['جريش',2,'كوب'],['لحم',.5,'كيلو'],['بصل',1,'حبة'],['لبن زبادي',2,'كوب'],['سمن',.25,'كوب'],['ماء',6,'كوب'],['ملح',0,'']],
+st:[['اغسلوا الجريش وانقعوه ساعة.','ساعة',60],['اسلقوا اللحم مع البصل والملح حتى ينضج.','45 دقيقة',45],['أضيفوا الجريش للمرق واتركوه على نار هادئة مع التحريك.','40 دقيقة',40],['أضيفوا اللبن وحرّكوا حتى يتماسك.','10 دقائق',10],['قدّموه وصبّوا فوقه السمن.','3 دقائق',3]]},
+{c:'sa',id:'saleeg',e:'🍚',n:'السليق',lv:'سهل',tot:'ساعة و10 دقائق',d:'أرز أبيض كريمي مع الدجاج والحليب، أكلة حجازية.',
+ing:[['أرز',2,'كوب'],['دجاج',1,'كيلو'],['حليب',3,'كوب'],['ماء',3,'كوب'],['سمن',3,'ملاعق'],['ملح',0,'']],
+st:[['اسلقوا الدجاج حتى ينضج، ثم اتركوا المرق.','40 دقيقة',40],['أضيفوا الأرز المغسول للمرق مع الحليب.','5 دقائق',5],['اتركوه على نار هادئة مع التحريك حتى يصير كريمي.','20 دقيقة',20],['أضيفوا السمن وقدّموه مع الدجاج فوقه.','5 دقائق',5]]},
+{c:'sa',id:'mutabbaq',e:'🥟',n:'المطبّق',lv:'سهل',tot:'40 دقيقة',d:'عجينة رقيقة محشوة باللحم المفروم والبيض، تُقلى حتى تصير ذهبية.',
+ing:[['رقائق عجين',8,'قطع'],['لحم مفروم',.5,'كيلو'],['بصل',1,'حبة'],['بيض',2,'حبة'],['بهارات',1,'ملعقة'],['زيت',1,'كوب'],['ملح',0,'']],
+st:[['اطبخوا اللحم مع البصل والبهارات والملح حتى ينشف.','15 دقيقة',15],['اخلطوا البيض مع الحشوة.','3 دقائق',3],['ضعوا الحشوة في وسط رقيقة وطبّقوها مثل المغلّف.','10 دقائق',10],['اقلوا المطبّق حتى يصير ذهبيًا من الجهتين.','10 دقائق',10],['قدّموه ساخنًا مع الدقوس أو الصلصة.','2 دقيقتان',2]]},
+{c:'sa',id:'mandi',e:'🍖',n:'المندي',lv:'متوسط',tot:'ساعتان',d:'لحم أو دجاج طري مع أرز مدخّن. نسخة بالفرن للمنزل.',
+ing:[['لحم غنم أو دجاج',1,'كيلو'],['أرز بسمتي',3,'كوب'],['بهارات مندي',2,'ملعقة كبيرة'],['ثوم',4,'فصوص'],['سمن',.25,'كوب'],['ملح',0,'']],
+st:[['اخلطوا البهارات والثوم والسمن والملح، وادهنوا اللحم.','10 دقائق',10],['لفّوا اللحم بورق الألمنيوم وادخلوه الفرن على 180 درجة.','75 دقيقة',75],['اسلقوا الأرز مع قليل من البهارات حتى ينضج.','20 دقيقة',20],['قدّموا الأرز وضعوا اللحم فوقه.','5 دقائق',5]]}
+];
+const C={om:'🇴🇲 عُمان',sa:'🇸🇦 السعودية'};
+let P=4,cc='om',cur=null,tab='ing',T=null,playing=false;const have=new Set();
+const $=s=>document.querySelector(s),app=$('#app');
+function setP(d){P=Math.min(30,Math.max(1,P+d));$('#pv').textContent=P;cur?open_(cur.id,tab):home()}
+function fr(x){const r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,m={0:'',.25:'¼',.5:'½',.75:'¾'}[f];return (w||!m?w:'')+(w&&m?' ':'')+m}
+function qty(i){return i[1]?fr(i[1]*P/4)+' '+i[2]+' '+i[0]:i[0]+(i[2]?'':' (حسب الذوق)')}
+function miss(x){return x.ing.filter(i=>!have.has(i[0]))}
+function home(){stop();cur=null;app.innerHTML='<h2>اختاري الأكلة وتعلّمي طريقتها</h2><p class="sub">اختاروا الدولة وعدد الأشخاص، وبعدين افتحوا الأكلة وشوفوا المقادير وطريقة التحضير وشو ناقصكم.</p><div class="tabs">'+Object.keys(C).map(k=>`<button class="tab ${k==cc?'on':''}" onclick="cc='${k}';home()">${C[k]}</button>`).join('')+'</div><div class="grid">'+D.filter(x=>x.c==cc).map(x=>{const m=miss(x).length;return `<button class="dish" onclick="open_('${x.id}')"><div class="e">${x.e}</div><b>${x.n}</b><span>${x.lv} · ${x.tot}</span>${have.size?`<em class="${m?'no':''}">${m?'ناقصك '+m+' من '+x.ing.length:'عندك كل المكونات'}</em>`:''}</button>`}).join('')+'</div><p class="note">الكميات تقريبية للتعلّم ومحسوبة حسب عدد الأشخاص. جرّبوا كل وصفة قبل العرض.</p>'}
+function open_(id,t){stop();cur=D.find(x=>x.id==id);tab=t||'ing';const x=cur;
+const tabs=[['ing','المقادير المطلوبة'],['how','طريقة التحضير'],['have','اللي عندي']].map(a=>`<button class="tab ${a[0]==tab?'on':''}" onclick="open_('${id}','${a[0]}')">${a[1]}</button>`).join('');
+let body='';
+if(tab=='ing')body=`<div class="box"><h3>المقادير لـ ${P} أشخاص</h3><ul>${x.ing.map(i=>'<li>'+qty(i)+'</li>').join('')}</ul></div>`;
+if(tab=='have'){const m=miss(x);body=`<div class="box"><h3>علّموا على اللي عندكم في البيت</h3>${x.ing.map((i,k)=>`<label class="chk"><input type="checkbox" ${have.has(i[0])?'checked':''} onchange="tg(${k})"> ${qty(i)}</label>`).join('')}<div class="miss ${m.length?'':'ok'}">${m.length?'<b>قائمة المشتريات:</b> '+m.map(qty).join('، '):'عندكم كل المكونات، تقدرون تبدون!'}</div></div>`}
+if(tab=='how')body=`<div class="btns"><button class="p" onclick="auto()">▶️ شغّلي الدرس بالصوت</button><button class="s" onclick="stop()">⏹ إيقاف</button></div>`+x.st.map((s,i)=>`<div class="step" id="s${i}"><div class="n">${i+1}</div><div class="t">${s[0]}<small>المدة: ${s[1]}</small></div><div class="side"><div class="time" id="tm${i}">${s[2]?fmt(s[2]*60):s[1]}</div>${s[2]?`<button class="s" onclick="timer(${i})">ابدأ المؤقت</button>`:''}<button class="s" onclick="say(${i})">🔊</button></div></div>`).join('');
+app.innerHTML=`<button class="back" onclick="home()">رجوع للأكلات</button><div class="hero"><div class="e">${x.e}</div><div><h2>${x.n}</h2><p class="sub" style="margin:0">${x.d}</p><div class="chips"><i>${C[x.c]}</i><i>المستوى: ${x.lv}</i><i>الوقت الكلي: ${x.tot}</i><i>${P} أشخاص</i></div></div></div><div class="tabs">${tabs}</div>${body}`}
+function tg(k){const n=cur.ing[k][0];have.has(n)?have.delete(n):have.add(n);open_(cur.id,'have')}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function voice(){const v=speechSynthesis.getVoices().filter(v=>v.lang.startsWith('ar'));const male=/maged|tarik|naayf|hamed|shakir|male|majed|fahed|ahmed/i;return v.find(x=>/zariyah|salma|hoda|laila|amira|zeina|female|noura|sara/i.test(x.name))||v.find(x=>!male.test(x.name))||v[0]}
+function speak(t,cb){if(!('speechSynthesis' in window)){alert('المتصفح ما يدعم القراءة الصوتية. استخدموا Chrome أو Edge.');return}const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.9;u.pitch=1.2;const v=voice();if(v)u.voice=v;u.onend=cb||null;speechSynthesis.speak(u)}
+function mark(i){document.querySelectorAll('.step').forEach((e,k)=>e.classList.toggle('on',k==i));const e=$('#s'+i);if(e)e.scrollIntoView({behavior:'smooth',block:'center'})}
+function say(i){speechSynthesis.cancel();mark(i);speak('الخطوة '+(i+1)+'. '+cur.st[i][0]+' المدة: '+cur.st[i][1])}
+function auto(){stop();playing=true;speak('أهلًا فيكم في لقمة. اليوم بنتعلّم '+cur.n+'، لـ '+P+' أشخاص. المقادير: '+cur.ing.map(qty).join('، '),()=>next(0))}
+function next(i){if(!playing)return;if(i>=cur.st.length){playing=false;speak('بالعافية عليكم!');return}mark(i);speak('الخطوة '+(i+1)+'. '+cur.st[i][0]+' المدة: '+cur.st[i][1],()=>setTimeout(()=>next(i+1),800))}
+function timer(i){clearInterval(T);mark(i);let s=cur.st[i][2]*60;const el=$('#tm'+i);T=setInterval(()=>{s--;el.textContent=fmt(s);if(s<=0){clearInterval(T);el.textContent='انتهى!';speak('خلص وقت الخطوة '+(i+1))}},1000)}
+function stop(){playing=false;clearInterval(T);if('speechSynthesis' in window)speechSynthesis.cancel()}
+if('speechSynthesis' in window)speechSynthesis.getVoices();
+home();
+</script></body></html>
